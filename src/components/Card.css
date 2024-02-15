@@ -1,0 +1,77 @@
+.outer-card {
+  width: 90%;
+  margin: 15px auto 15px auto;
+  border: 1.5px solid #8f8d8d;
+  border-radius: 5px;
+}
+
+.outer-card:first-child {
+  margin-top: 0%;
+}
+
+.card-head {
+  margin: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-head img {
+  border-radius: 50%;
+}
+.card-head h2 {
+  width: 70%;
+  padding-left: 10px;
+}
+
+.card-body {
+  margin: 10px 10px 10px 10px;
+}
+
+.card-body-1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card-body label {
+  display: block;
+  color: grey;
+}
+
+.card-body p,
+.card-body select {
+  font-weight: 550;
+  text-transform: capitalize;
+  background-color: inherit;
+  font: inherit;
+  display: block;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.card-footer button {
+  margin-left: 10px;
+}
+
+.editing p,
+.editing h2,
+.editing select {
+  border: 2px solid gray;
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+}
+
+select{
+    margin: auto 0 auto 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}

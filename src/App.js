@@ -1,24 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDeferredValue, useState } from "react";
+import Card from "./components/Card";
+import { data } from "./data/data";
+import "./app.css"
+import Modal from "./components/Modal";
 
 function App() {
+  const [query, setQuery] = useState("");
+  const [celebData, setCelebData] = useState(data);
+  const [task, setTask] = useState({ task: null });
+  const defferedQuery = useDeferredValue(query, { timeoutMs: 500 });
+  const filteredUsers = celebData.filter((user) => {
+    const fullName = `${user.first} ${user.last}`.toLowerCase();
+    return fullName.includes(defferedQuery.toLowerCase());
+  });
+  const taskHandler = (task) => {
+    if (task.task == "delete") {
+      setCelebData((prev) => prev.filter((el) => el.id != task.id));
+    } else {
+      setCelebData((prev) =>
+        prev.map((el) => {
+          if (el.id == task.id) {
+            return { ...el, ...task.data };
+          } else return el;
+        })
+      );
+    }
+    setTask({ task: null });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {task.task ? (
+        <Modal
+          task={task}
+          taskHandler={taskHandler}
+          setTask={() => setTask({ task: null })}
+        />
+      ) : null}
+      <div className="outer-container">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={(event) => setQuery(event.target.value)}
+          />
+        </div>
+        <div className="inner-container">
+          {filteredUsers.map((el) => (
+            <Card data={el} setTask={(task) => setTask(task)} key={el.id} />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 

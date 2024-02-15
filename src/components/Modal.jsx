@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import "./Modal.css";
 
 const Modal = (props) => {
-  console.log(props.task);
   const doTask = () => {
     props.taskHandler(props.task);
   };

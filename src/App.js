@@ -14,12 +14,12 @@ function App() {
     return fullName.includes(defferedQuery.toLowerCase());
   });
   const taskHandler = (task) => {
-    if (task.task == "delete") {
-      setCelebData((prev) => prev.filter((el) => el.id != task.id));
+    if (task.task === "delete") {
+      setCelebData((prev) => prev.filter((el) => el.id !== task.id));
     } else {
       setCelebData((prev) =>
         prev.map((el) => {
-          if (el.id == task.id) {
+          if (el.id === task.id) {
             return { ...el, ...task.data };
           } else return el;
         })

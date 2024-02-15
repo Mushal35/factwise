@@ -27,7 +27,7 @@ const Card = (props) => {
   return (
     <div className={`outer-card ${editState ? "editing" : ""}`}>
       <div className="card-head">
-        <img src={props.data.picture} alt="image"></img>
+        <img src={props.data.picture} alt="userImg"></img>
         <h2 contentEditable={editState} ref={fullname}>
           {props.data.first + " " + props.data.last}
         </h2>
